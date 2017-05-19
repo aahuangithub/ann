@@ -12,16 +12,15 @@ class Synapse{
 	public float calculate(){
 		return weight*con1.getValue();
 	}
+	public void learn(){
+		//gradient descent?
+	}
 	public void disp(){
 		stroke(127+127*weight);
 		strokeWeight(2);
 		float[] t1, t2;
-
 		t1=con1.getCoords();
 		t2=con2.getCoords();
 		line(t1[0],t1[1],t2[0],t2[1]);
-		strokeWeight(1);
-		text(weight, 0.5*(t1[0]+t2[0]), 0.5*(t2[1]+t2[0]));
-		
 	}
 }

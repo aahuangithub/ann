@@ -7,6 +7,7 @@ float[] data=new float[8];
 void setup(){
 	size(1000, 800);
 	nodes = new ArrayList<ArrayList<Node>>();
+
 	//max 12
 	ArrayList<Node> tem=new ArrayList<Node>();
 	for(int i=0; i<data.length; i++){
@@ -24,9 +25,9 @@ void setup(){
 		}
 		nodes.add(temp);
 	}
-	for(int i=0; i<nodes.size()-1; i++)
+	for(int i=1; i<nodes.size(); i++)
 		for(Node node:nodes.get(i))
-			for(Node node2:nodes.get(i+1))
+			for(Node node2:nodes.get(i-1))
 				node.addSynapse(node2);
 
 }
