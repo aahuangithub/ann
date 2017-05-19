@@ -32,9 +32,12 @@ void setup(){
 }
 void draw(){
 	background(0);
-	for(ArrayList<Node> i:nodes)
-		for(Node j:i)
+	for(ArrayList<Node> i:nodes){
+		for(Node j:i){
+			j.activation();
 			j.disp();
+		}
+	}
 }
 
 void mousePressed(){

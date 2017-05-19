@@ -1,21 +1,22 @@
 public class Node{
-	private float x, y, value;
+	private float x, y, value, bias;
 	private ArrayList<Synapse> synapses=new ArrayList<Synapse>();
 	public Node(float xx, float yy){
+		bias=0;
 		x=xx;
 		y=yy;
 	}
 
 	public void addSynapse(Node con2){
-		synapses.add(new Synapse(this, con2));
+		synapses.add(new Synapse(con2, this));
 	}
 
-	public float activation(float[] m){
+	public float activation(){
 		float sum=0;
 		for(Synapse synapse:synapses) 
 			sum+=synapse.calculate();
-		value=(float)(1/(1+Math.pow(Math.E,-1*sum)));
-		return (float)(1/(1+Math.pow(Math.E,-1*sum)));
+		value=(float)(1/(1+Math.pow(Math.E,-1*(sum+bias))));
+		return (float)(1/(1+Math.pow(Math.E,-1*(sum+bias))));
 	}
 	public float getValue(){
 		return value;
