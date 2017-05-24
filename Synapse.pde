@@ -12,8 +12,13 @@ class Synapse{
 	public float calculate(){
 		return weight*con1.getValue();
 	}
+	public float calcError(){
+		return 0;
+	}
 	public void learn(){
 		//gradient descent?
+		if(calcError()<0) weight+=STEP;
+		else weight-=STEP;
 	}
 	public void disp(){
 		stroke(127+127*weight);

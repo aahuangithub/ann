@@ -1,8 +1,7 @@
 public class Node{
-	private float x, y, value, bias;
+	private float x, y, value, error;
 	private ArrayList<Synapse> synapses=new ArrayList<Synapse>();
 	public Node(float xx, float yy){
-		bias=0;
 		x=xx;
 		y=yy;
 	}
@@ -15,24 +14,36 @@ public class Node{
 		float sum=0;
 		for(Synapse synapse:synapses) 
 			sum+=synapse.calculate();
-		value=(float)(1/(1+Math.pow(Math.E,-1*(sum+bias))));
-		return (float)(1/(1+Math.pow(Math.E,-1*(sum+bias))));
+		value=(float)(1/(1+Math.pow(Math.E,-1*sum)));
+		return (float)(1/(1+Math.pow(Math.E,-1*sum)));
+	}
+	public float calcError(float answer){
+		error=value-answer;
+		return value-answer;
+	}
+
+	//GET
+	public float getError(){
+		return error;
 	}
 	public float getValue(){
 		return value;
 	}
-
-	public void setValue(float val){
-		value=val;
-	}
-
 	public float[] getCoords(){
 		float[] temp = {x, y};
 		return temp;
 	}
 
+	//SET
+	public void setValue(float val){
+		value=val;
+	}
+
+
+
 	public void disp(){
-		text(value, x, y);
+		fill(255);
+		text((int)(value*100), x+15, y);
 		stroke(0);
 		strokeWeight(1);
 		fill(255);
@@ -40,5 +51,6 @@ public class Node{
 			synapse.disp();
 		ellipse(x, y, 20, 20);
 	}
+	
 
 }
